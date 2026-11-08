@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GG Trick 3</title>
+<style>
+:root{--bg:#dfe0ff;--bg2:#c5c6e2;--p:#5660b0;--p2:#4449a8;--ac:#5865ff;--tx:#111;--w:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#1a1b36;--bg2:#24254a;--tx:#eee}}
+*{box-sizing:border-box}html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--tx);font-family:Roboto,system-ui,sans-serif;display:flex;flex-direction:column;overflow:hidden}
+h1{font:italic 900 26px "Orbitron",monospace;margin:14px 18px 8px;letter-spacing:1px}
+main{flex:1;overflow:auto;padding:0 12px 12px;background:var(--bg2)}
+nav{display:flex;background:var(--p2)}nav button{flex:1;padding:14px 4px;background:none;border:0;color:var(--w);font-size:14px}
+nav button.a{background:var(--ac)}
+.row{display:flex;justify-content:space-between;align-items:center;padding:16px 14px;border-bottom:1px solid #8f95d6;color:var(--w);cursor:pointer}
+.list{background:var(--p);margin-top:10px;border-radius:6px}
+.btn{background:var(--ac);color:var(--w);border:0;padding:10px 16px;border-radius:4px;font-size:15px;cursor:pointer}
+.btn.g{background:#777}
+.games{display:flex;gap:14px;overflow-x:auto;padding:20px 4px;align-items:center}
+.card{flex:0 0 120px;height:150px;background:linear-gradient(135deg,#7a80f0 50%,var(--p2) 50%);border:2px solid transparent;color:var(--w);text-align:center;padding-top:20px;cursor:pointer;position:relative}
+.card.s{border-color:#fff;transform:scale(1.1)}
+.card i{display:block;font-size:46px;font-style:normal}.card b{position:absolute;bottom:8px;left:0;right:0;font-weight:400;font-size:14px}
+.pill{background:var(--ac);color:#fff;border-radius:20px;padding:5px 12px;font-size:13px;margin-left:6px}
+.modal{position:fixed;inset:0;background:#000a;display:none;align-items:center;justify-content:center;z-index:50}
+.modal.o{display:flex}.box{background:var(--ac);color:#fff;border-radius:8px;width:min(94vw,560px);max-height:88vh;overflow:auto;padding:14px}
+.box h3{margin:0 0 8px;text-align:center}
+.sl{display:flex;align-items:center;gap:6px;padding:8px 0;border-bottom:1px solid #fff3;font-size:14px}.sl span{flex:1}.sl input[type=range]{flex:1.4}
+.sl button{width:28px;height:28px;border-radius:50%;border:1px solid #fff;background:none;color:#fff}.sl em{width:44px;text-align:center;font-style:normal}
+.seg button{background:#c5c8ff;border:0;padding:6px 8px;color:var(--ac)}.seg button.a{background:#fff}
+#game{position:fixed;inset:0;background:#000;display:none;z-index:20}
+#game.o{display:block}
+#stage{position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,#e8873a,#7a2e1b 55%,#1a1030);overflow:hidden;user-select:none}
+.k{position:absolute;width:46px;height:46px;margin:-23px;border-radius:50%;border:2px solid #6f78ff;background:#0b0f3caa;color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;text-align:center;cursor:pointer;touch-action:none;transition:.08s}
+.k.on{background:#6f78ff;transform:scale(1.2)}.k.j{width:90px;height:90px;margin:-45px}.k .kn{position:absolute;width:30px;height:30px;border-radius:50%;background:#6f78ffcc}
+.k .x{position:absolute;top:-8px;right:-8px;background:#e33;border-radius:50%;width:18px;height:18px;font-size:12px;display:none}
+#stage.ed .k .x{display:flex;align-items:center;justify-content:center}
+#cross{position:absolute;width:14px;height:14px;margin:-7px;border:2px solid #fff;border-radius:50%;pointer-events:none;display:none}
+#hud{position:absolute;left:10px;top:8px;color:#fff;font-size:12px;background:#0008;padding:4px 8px;border-radius:4px}
+#side{position:absolute;left:0;top:0;bottom:0;width:230px;background:linear-gradient(90deg,#3b3da0,#0a0a20);transform:translateX(-100%);transition:.2s;padding:10px;display:grid;grid-template-columns:1fr 1fr;gap:10px;align-content:start;overflow:auto;z-index:5}
+#side.o{transform:none}#side button{background:none;border:0;color:#fff;font-size:11px}#side button b{display:block;font-size:30px;font-weight:400;border:2px solid #6f78ff;border-radius:12px;padding:6px;margin-bottom:4px}
+#edbar{position:absolute;top:8px;left:50%;transform:translateX(-50%);background:var(--ac);display:none;border-radius:8px;overflow:hidden;z-index:6;flex-wrap:wrap;max-width:94vw}
+#edbar button{background:none;border:0;color:#fff;padding:10px 14px;font-size:14px}
+#tab{position:absolute;left:0;top:45%;background:#5865ffcc;color:#fff;border:0;padding:16px 6px;border-radius:0 8px 8px 0;z-index:4}
+#toast{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:#000c;color:#fff;padding:8px 14px;border-radius:20px;z-index:99;display:none;font-size:14px}
+</style></head><body>
+<h1 id="ttl">Jogos</h1>
+<main id="m"></main>
+<nav id="nav"></nav>
+
+<div id="game">
+ <div id="stage"><div id="cross"></div><div id="hud"></div></div>
+ <button id="tab">☰</button>
+ <div id="side"></div>
+ <div id="edbar"></div>
+</div>
+<div class="modal" id="md"><div class="box" id="bx"></div></div>
+<div id="toast"></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const DEF={games:[{id:'bs',n:'Blood Strike',i:'🎯',on:1},{id:'ff',n:'Free Fire',i:'🔥',on:1},{id:'rb',n:'Roblox',i:'🟦',on:1},{id:'mj',n:'MJLauncher',i:'⛏️',on:1},{id:'al',n:'AliExpress',i:'🛍️',on:0},{id:'ar',n:'Arquivos',i:'📁',on:0},{id:'au',n:'Auto Clicker',i:'👆',on:0},{id:'as',n:'Astra AI',i:'🌀',on:0}],
+ km:{},st:{hs:358,vs:360,hs2:300,vs2:300,acc:12,hot:'Empty',cp:0,logo:100,ms:4,poll:'Sem Limite',ps:14,sty:'Estilo 1'},user:'IronicalManeuver125',lvl:7,mode:'Sem fio',vip:0};
+let S;try{S=JSON.parse(localStorage.getItem('ggt3'))||DEF}catch(e){S=DEF}
+const save=()=>{try{localStorage.setItem('ggt3',JSON.stringify(S))}catch(e){}};
+const toast=t=>{const e=$('#toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display='none',1800)};
+const defKm=()=>{const P=[['F',5,43],['E',10,58],['L-Shift',4,67],['L-Alt',15,92],['1',82,22],['2',88,20],['3',93,22],['T',96,44],['Mouse-D',94,56],['Mouse-E',77,56],['Espaço',89,66],['R',72,72],['Z',69,82],['V',79,82],['Q',74,93],['X',83,93],['C',91,90],['ESC',94,4]];
+ return [{id:'j',t:'joy',k:'WASD',x:22,y:72},...P.map((p,i)=>({id:'d'+i,t:'key',k:p[0],x:p[1],y:p[2]}))]};
+const kmOf=g=>S.km[g]||(S.km[g]=defKm());
+let tab=0,sel='ff';
+const TABS=['🎮 Iniciar jogo','👤 Conta','🎟️ Loteria','⚙️ Configurações'],TT=['Jogos','Conta','Loteria','Configurações'];
+function nav(){ $('#nav').innerHTML=TABS.map((t,i)=>`<button class="${i==tab?'a':''}" onclick="tab=${i};render()">${t}</button>`).join('')}
+function render(){nav();$('#ttl').textContent=TT[tab];const m=$('#m');
+ if(tab==0){const gs=S.games.filter(g=>g.on);
+  m.innerHTML=`<div style="display:flex;align-items:center;justify-content:space-between;padding-top:10px"><button class="btn" onclick="addGame()">+ Adicionar jogo</button><div><span class="pill">🖱 Desconectado</span><span class="pill">⌨ Desconectado</span></div></div>
+  <div class="games">${gs.map(g=>`<div class="card ${g.id==sel?'s':''}" onclick="sel='${g.id}';render()"><i>${g.i}</i><b>${g.n}</b></div>`).join('')}</div>
+  <div style="text-align:center"><button class="btn" onclick="launchApp('${sel}')">Iniciar jogo</button> <button class="btn g" onclick="play('${sel}')">Editar keymap</button></div>`}
+ if(tab==1)m.innerHTML=`<div class="list"><div class="row"><span>Usuário</span><span>${S.user}</span></div><div class="row"><span>Nível</span><span>${S.lvl}</span></div><div class="row"><span>VIP</span><span>${S.vip>0?S.vip+' dias':'Inativo'}</span></div><div class="row" onclick="S.user=prompt('Novo nome',S.user)||S.user;save();render()"><span>Alterar nome</span><span>></span></div><div class="row" onclick="if(confirm('Resetar tudo?')){localStorage.removeItem('ggt3');location.reload()}"><span>Resetar dados</span><span>></span></div></div>`;
+ if(tab==2)m.innerHTML=`<div class="list" style="padding:20px;text-align:center;color:#fff"><div id="lot" style="font-size:60px">🎰</div><p id="lr">Gire para tentar ganhar dias de VIP!</p><button class="btn" onclick="spin()">Girar</button></div>`;
+ if(tab==3)m.innerHTML=`<div class="list"><div class="row" onclick="render2('acc')"><span>Informações da Conta</span><span>></span></div><div class="row" onclick="cycleMode()"><span>Modo de Ativação</span><span>${S.mode}></span></div><div class="row" onclick="wizard()"><span>Assistente de ativação</span><span>></span></div><div class="row" onclick="perms()"><span>Gerenciamento de permissões</span><span>></span></div><div class="row" onclick="toast('Discord Oficial: link do seu servidor')"><span>Discord Oficial</span><span>Clique para Participar</span></div><div class="row" onclick="toast('WhatsApp Oficial: link do seu grupo')"><span>Whatsapp Oficial</span><span>Clique para Participar</span></div></div>`}
+function render2(){tab=1;render()}
+const PK={ff:['com.dts.freefireth','com.dts.freefiremax'],rb:['com.roblox.client'],bs:['com.netease.newspike'],mj:['com.mojang.minecraftpe']};
+function launchApp(id){const l=PK[id];if(!l){toast('Pacote deste app não configurado');return}
+ if(id=='ff'&&confirm('OK = Free Fire MAX\nCancelar = Free Fire normal'))l.reverse();
+ if(window.Android){if(!Android.serviceOn()){toast('Ative o GG Trick 3 em Acessibilidade');Android.openAccessibility();return}Android.setKeymap(JSON.stringify(kmOf(id)));Android.launch(l[0]);return}
+ const u='intent:#Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;package='+l[0]+';end';
+ try{window.open(u,'_top')}catch(e){location.href=u}toast('Abrindo '+l[0]+'...')}
+function cycleMode(){S.mode=S.mode=='Sem fio'?'Com fio (USB)':'Sem fio';save();render()}
+function spin(){const r=Math.random(),e=$('#lr');if(r<.3){const d=1+Math.floor(Math.random()*3);S.vip+=d;save();e.textContent='🎉 Você ganhou '+d+' dia(s) de VIP!'}else e.textContent='Não foi dessa vez. Tente novamente!'}
+function modal(h){$('#bx').innerHTML=h;$('#md').classList.add('o')}
+function closeM(){$('#md').classList.remove('o')}
+function wizard(){modal(`<h3>Assistente de ativação</h3><p>1. Conecte o mouse e o teclado (Bluetooth ou OTG).<br>2. Escolha o jogo e toque em Iniciar jogo.<br>3. Clique na área do jogo para capturar o mouse (ESC libera).<br>4. Ajuste as teclas em Editar keymap.</p><button class="btn g" onclick="closeM()">Fechar</button>`)}
+function perms(){modal(`<h3>Gerenciamento de permissões</h3><p>Nesta versão web, o navegador pede acesso apenas ao ponteiro (Pointer Lock) e ao teclado quando você clica na área do jogo.</p><button class="btn g" onclick="closeM()">Fechar</button>`)}
+function addGame(){const draw=()=>modal(`<h3>Adicionar jogo</h3><p style="font-size:13px">Clique no jogo que deseja adicionar e depois em Aplicar.</p><div style="display:flex;flex-wrap:wrap;gap:8px">${S.games.map((g,i)=>`<div class="card ${g.on?'s':''}" style="flex:0 0 90px;height:100px;padding-top:10px;transform:none" onclick="S.games[${i}].on^=1;window.dr()"><i style="font-size:32px">${g.i}</i><b>${g.on?'✔ ':''}${g.n}</b></div>`).join('')}</div><p><button class="btn g" onclick="closeM()">Voltar</button> <button class="btn" onclick="save();closeM();render()">Aplicar</button></p>`);window.dr=draw;draw()}
+
+/* sliders */
+function sl(l,o,k,min,max,step=1,dec=1){return `<div class="sl"><span>${l}</span><button onclick="adj('${o}','${k}',-${step},${min},${max})">-</button><input type="range" min="${min}" max="${max}" step="${step}" value="${S[o][k]}" oninput="S.${o}.${k}=+this.value;this.nextElementSibling.nextElementSibling.textContent=(+this.value).toFixed(${dec});save()"><button onclick="adj('${o}','${k}',${step},${min},${max})">+</button><em>${(+S[o][k]).toFixed(dec)}</em></div>`}
+function adj(o,k,d,mn,mx){S[o][k]=Math.max(mn,Math.min(mx,+S[o][k]+d));save();openSet(curSet)}
+let curSet='k';
+function seg(k,arr){return arr.map(a=>`<button class="${S.st[k]==a?'a':''}" onclick="S.st.${k}='${a}';save();openSet(curSet)">${a}</button>`).join('')}
+function openSet(w){curSet=w;if(w=='k')modal(`<h3>Configurações de Keymap</h3>${sl('Aceleração do contador (maior = pesado, menor = mais aceleração) · VIP','st','acc',1,20)}${sl('Sensibilidade Horizontal','st','hs',50,600)}${sl('Sensibilidade Vertical','st','vs',50,600)}<div class="sl"><span>Tecla de atalho da sensibilidade</span><em style="width:auto">${S.st.hot}</em><button style="width:auto;padding:0 10px;border-radius:6px" onclick="capture(k=>{S.st.hot=k;save();openSet('k')})">EDITAR</button></div>${sl('Sensibilidade horizontal (comutada)','st','hs2',50,600)}${sl('Sensibilidade vertical (comutada)','st','vs2',50,600)}<button class="btn g" onclick="closeM()">Fechar</button>`);
+ else modal(`<h3>Configurações Básicas</h3><div class="sl"><span>Mostrar ponto de contacto</span><input type="checkbox" ${S.st.cp?'checked':''} onchange="S.st.cp=+this.checked;save()"></div>${sl('Transparência do Logo','st','logo',0,100)}${sl('Sensibilidade do Ponteiro do Mouse','st','ms',1,20)}<div class="sl"><span>Taxa de Polling</span><div class="seg">${seg('poll',['125hz','250hz','500hz','Sem Limite'])}</div></div>${sl('Tamanho do Ponteiro','st','ps',6,40)}<div class="sl"><span>Estilo do Ponteiro</span><div class="seg">${seg('sty',['Estilo 1','Estilo 2','Estilo 3','Estilo 4'])}</div></div><button class="btn g" onclick="closeM()">FECHAR</button>`)}
+
+/* keys */
+const nk=e=>({' ':'Espaço',Shift:'L-Shift',Alt:'L-Alt',Escape:'ESC',Control:'L-Ctrl',Tab:'Tab'}[e.key]||(e.key.length==1?e.key.toUpperCase():e.key));
+function capture(cb){toast('Pressione uma tecla ou botão do mouse...');const kd=e=>{e.preventDefault();off();cb(nk(e))},md=e=>{e.preventDefault();off();cb(e.button==0?'Mouse-E':e.button==2?'Mouse-D':'Mouse-M')},off=()=>{removeEventListener('keydown',kd,1);removeEventListener('mousedown',md,1)};
+ setTimeout(()=>{addEventListener('keydown',kd,1);addEventListener('mousedown',md,1)},150)}
+
+/* game */
+let G=null,edit=false,cur={x:50,y:50},sw=false,down=new Set();
+function play(id){G=id;$('#game').classList.add('o');edit=false;drawStage();const g=S.games.find(x=>x.id==id);$('#stage').style.background=id=='ff'?'radial-gradient(circle at 50% 40%,#e8873a,#7a2e1b 55%,#1a1030)':'radial-gradient(circle at 50% 40%,#3a6be8,#1b2a7a 55%,#05051a)';sideMenu();hud()}
+function exitGame(){$('#game').classList.remove('o');document.exitPointerLock&&document.exitPointerLock();G=null}
+function sideMenu(){$('#side').innerHTML=[['🏠','Início','exitGame()'],['⚙️','Configurações Básicas',"openSet('b')"],['⌨️','Configurações de Keymap',"openSet('k')"],['✏️','Editar keymap','startEdit()'],['🎛️','Mapeamento de Teclas','mapList()'],['🎯','Resetar mira','cur={x:50,y:50};hud()']].map(b=>`<button onclick="$('#side').classList.remove('o');${b[2]}"><b>${b[0]}</b>${b[1]}</button>`).join('')}
+$('#tab').onclick=()=>$('#side').classList.toggle('o');
+function mapList(){modal(`<h3>Mapeamento de Teclas</h3><p style="font-size:13px">${kmOf(G).map(c=>c.k).join(' · ')}</p><button class="btn g" onclick="closeM()">Fechar</button>`)}
+function drawStage(){const st=$('#stage');st.querySelectorAll('.k').forEach(e=>e.remove());
+ kmOf(G).forEach(c=>{const d=document.createElement('div');d.className='k'+(c.t=='joy'?' j':'');d.dataset.id=c.id;d.style.left=c.x+'%';d.style.top=c.y+'%';
+  d.innerHTML=(c.t=='joy'?'<div class="kn"></div>':c.k)+'<div class="x">×</div>';
+  d.querySelector('.x').onpointerdown=e=>{e.stopPropagation();S.km[G]=kmOf(G).filter(z=>z.id!=c.id);drawStage()};
+  d.onpointerdown=e=>{if(!edit)return;e.stopPropagation();let mv=0;d.setPointerCapture(e.pointerId);const r=st.getBoundingClientRect();
+   d.onpointermove=ev=>{mv=1;c.x=Math.max(0,Math.min(100,(ev.clientX-r.left)/r.width*100));c.y=Math.max(0,Math.min(100,(ev.clientY-r.top)/r.height*100));d.style.left=c.x+'%';d.style.top=c.y+'%'};
+   d.onpointerup=()=>{d.onpointermove=null;if(!mv&&c.t!='joy')capture(k=>{c.k=k;drawStage()})}};
+  st.appendChild(d)});st.classList.toggle('ed',edit)}
+function startEdit(){edit=true;document.exitPointerLock&&document.exitPointerLock();drawStage();const b=$('#edbar');b.style.display='flex';
+ b.innerHTML=`<button onclick="edEnd()">Sair</button><button onclick="addComp()">Adicionar componente</button><button onclick="save();toast('Keymap salvo!')">Salvar</button><button onclick="share()">Compartilhar</button><button onclick="imp()">Importar</button>`}
+function edEnd(){edit=false;$('#edbar').style.display='none';save();drawStage()}
+function addComp(){modal(`<h3>Adicionar componente</h3><p style="display:grid;gap:8px"><button class="btn g" onclick="mk('key')">Tecla</button><button class="btn g" onclick="mk('mouseE')">Mouse E (clique esquerdo)</button><button class="btn g" onclick="mk('mouseD')">Mouse D (clique direito)</button><button class="btn g" onclick="mk('joy')">Joystick (WASD)</button></p>`)}
+function mk(t){closeM();const id='n'+Date.now(),c={id,x:50,y:50,t:t=='joy'?'joy':'key',k:t=='mouseE'?'Mouse-E':t=='mouseD'?'Mouse-D':t=='joy'?'WASD':'?'};kmOf(G).push(c);drawStage();if(t=='key')capture(k=>{c.k=k;drawStage()})}
+function share(){const j=JSON.stringify(kmOf(G));navigator.clipboard?.writeText(j).then(()=>toast('Keymap copiado!'),()=>prompt('Copie:',j));if(!navigator.clipboard)prompt('Copie:',j)}
+function imp(){const j=prompt('Cole o keymap (JSON):');if(!j)return;try{const a=JSON.parse(j);if(!Array.isArray(a))throw 0;S.km[G]=a;save();drawStage();toast('Importado!')}catch(e){toast('JSON inválido')}}
+
+/* play mode */
+function hud(){const s=S.st;$('#hud').textContent=`Mouse: ${sw?'comutada':'normal'} · H ${sw?s.hs2:s.hs} V ${sw?s.vs2:s.vs} · ESC libera o mouse`;const c=$('#cross');c.style.left=cur.x+'%';c.style.top=cur.y+'%';c.style.display='block';c.style.opacity=S.st.logo/100;c.style.width=c.style.height=S.st.ps+'px';c.style.margin=-S.st.ps/2+'px'}
+function light(k,on){if(!G||edit)return;document.querySelectorAll('.k').forEach(d=>{const c=kmOf(G).find(z=>z.id==d.dataset.id);if(c&&c.k==k)d.classList.toggle('on',on)})}
+function joy(){const c=kmOf(G).find(z=>z.t=='joy');if(!c)return;const d=document.querySelector(`.k[data-id="${c.id}"] .kn`);if(!d)return;const x=(down.has('D')-down.has('A'))*28,y=(down.has('S')-down.has('W'))*28;d.style.transform=`translate(${x}px,${y}px)`}
+addEventListener('keydown',e=>{if(!G||edit||$('#md').classList.contains('o'))return;const k=nk(e);if(k=='ESC'&&document.pointerLockElement)return;e.preventDefault();if(k==S.st.hot&&!e.repeat){sw=!sw;hud();toast(sw?'Sensibilidade comutada':'Sensibilidade normal')}down.add(k);light(k,1);joy()});
+addEventListener('keyup',e=>{if(!G)return;const k=nk(e);down.delete(k);light(k,0);joy()});
+$('#stage').addEventListener('mousedown',e=>{if(!G||edit)return;if(!document.pointerLockElement)$('#stage').requestPointerLock?.();const k=e.button==0?'Mouse-E':'Mouse-D';light(k,1);setTimeout(()=>light(k,0),120)});
+$('#stage').addEventListener('contextmenu',e=>e.preventDefault());
+addEventListener('mousemove',e=>{if(!G||edit)return;const s=S.st,h=sw?s.hs2:s.hs,v=sw?s.vs2:s.vs,acc=s.acc,f=1/(1+acc/20);
+ const dx=(e.movementX||0)*(h/360)*s.ms*.05*(2-f),dy=(e.movementY||0)*(v/360)*s.ms*.05*(2-f);
+ if(document.pointerLockElement){cur.x=Math.max(0,Math.min(100,cur.x+dx));cur.y=Math.max(0,Math.min(100,cur.y+dy));hud()}});
+render();
+</script></body></html>
